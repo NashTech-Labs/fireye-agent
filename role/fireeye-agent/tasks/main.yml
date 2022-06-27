@@ -1,0 +1,37 @@
+---
+
+- name: create fireeye directory
+  file:
+    path: "{{ path_where_you_want_the_directory }}"
+    state: directory
+
+- name: 'Get XAGT package file 
+  get_url:
+    url: "{{ artifactory_url_xagt }}"
+    dest: "{{ path_you_Want_to_download_the_package_file }}"
+    force: yes
+
+- name: 'Get JSON FireEye config file from Artifactory'
+  get_url:
+    url: "{{ artifactory_url_xagt }}/xagt_agent_config.json"
+    dest: "{{ path_you_Want_to_download_the_json_file }}"
+    force: yes
+
+- name: 'Install FireEye Agent on Ubuntu servers'
+  apt:
+    deb: "{{ path }}/{{ package_file_xagt }}"
+    state: present
+    update_cache: true
+  register: result_xagt1
+
+- name: 'Import FireEye agent settings from agent_config.json file'
+  shell: |
+    /opt/fireeye/bin/xagt -i {{ path }}/fireeye_agent_config.json
+  args:
+    executable: /bin/bash
+
+- name: 'Enable and start FireEye Agent service'
+  service:
+    name: xagt
+    enabled: yes
+    state: started

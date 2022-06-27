@@ -1,0 +1,7 @@
+- name: Run fireeye-agent role
+  hosts: <hostname>
+  become: true
+  become_method: sudo
+  roles:
+    - fireeye-agent
+
