@@ -1,0 +1,7 @@
+- name: Uninstall fireeye-agent from servers
+  hosts: <hostname>
+  become: true
+  become_method: sudo
+  roles:
+    - Rollback-fireeye-agent
+

@@ -1,0 +1,7 @@
+path_where_you_want_the_directory: opt/fireeye
+
+path_you_Want_to_download_the_package_file: etc/fireeye/
+path_you_Want_to_download_the_json_file: etc/fireeye/json/
+path: "{{ path }}"
+package_file_xagt: "{{ package }}"
+

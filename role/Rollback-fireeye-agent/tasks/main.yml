@@ -1,0 +1,30 @@
+---
+
+- name: 'Stop FireEye Agent service'
+  service:
+    name: xagt
+    state: stopped
+
+- name: 'Uninstall FireEye Agent on Ubuntu servers'
+  apt:
+    deb: "{{ path }}/{{ package_file_xagt }}"
+    state: absent
+    update_cache: true
+
+
+- name: 'Delete fireeye directory'
+  file:
+    path: "{{ path_where_you_want_the_directory }}"
+    state: absent
+
+- name: 'Delete XAGT package file'
+  file:
+    state: absent
+    path: "{{path_you_Want_to_download_the_package_file}}"
+
+- name: 'Delete JSON FireEye config file from Artifactory'
+  file:
+    state: absent
+    path: "{{path_you_Want_to_download_the_json_file}}"
+
+

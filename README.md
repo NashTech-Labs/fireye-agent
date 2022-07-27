@@ -8,6 +8,11 @@ Checkout this blog for further reference- https://blog.knoldus.com/introduction-
 
 To use the playbook run the following command in the main folder-
 
-ansible-playbook -i <the host file if you are using> playbook/install-fireeye-agent.yml
+ansible-playbook -i (the host file if you are using) playbook/install-fireeye-agent.yml
 
 before running the playbook do specify the <hostname> in the ansible playbook and check for the default variable values
+
+
+In case we want to Rollback the deployed agent for DR, we can run the following playbook and role-
+
+ansible-playbook -i (the host file if you are using) playbook/uninstall-fireeye-agent.yml
